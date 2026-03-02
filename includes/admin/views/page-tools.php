@@ -2,7 +2,7 @@
 /**
  * Tools tab view for the Elementor MCP admin settings page.
  *
- * Displays all MCP tools grouped by category with toggle checkboxes.
+ * Displays all MCP tools grouped by category with toggle switches.
  *
  * @package Elementor_MCP
  * @since   1.0.0
@@ -22,13 +22,15 @@ $total_count   = $this->get_total_tool_count();
 <form method="post" action="options.php" id="elementor-mcp-tools-form">
 	<?php settings_fields( Elementor_MCP_Admin::SETTINGS_GROUP ); ?>
 
-	<p class="description">
+	<p class="elementor-mcp-tools-summary">
 		<?php
 		printf(
-			/* translators: %1$d: enabled count, %2$d: total count */
-			esc_html__( '%1$d of %2$d tools enabled.', 'elementor-mcp' ),
+			/* translators: %1$s: opening strong tag, %2$d: enabled count, %3$d: total count, %4$s: closing strong tag */
+			esc_html__( '%1$s%2$d of %3$d%4$s tools enabled.', 'elementor-mcp' ),
+			'<strong>',
 			$enabled_count,
-			$total_count
+			$total_count,
+			'</strong>'
 		);
 		?>
 	</p>
@@ -53,7 +55,7 @@ $total_count   = $this->get_total_tool_count();
 					}
 					printf(
 						/* translators: %1$d: enabled, %2$d: total */
-						esc_html__( '(%1$d/%2$d)', 'elementor-mcp' ),
+						esc_html__( '%1$d / %2$d', 'elementor-mcp' ),
 						$cat_enabled,
 						$cat_total
 					);
@@ -61,7 +63,7 @@ $total_count   = $this->get_total_tool_count();
 				</span>
 				<span class="elementor-mcp-category-actions">
 					<button type="button" class="button-link elementor-mcp-cat-enable-all"><?php esc_html_e( 'All', 'elementor-mcp' ); ?></button>
-					<span class="elementor-mcp-separator">|</span>
+					<span class="elementor-mcp-separator">&middot;</span>
 					<button type="button" class="button-link elementor-mcp-cat-disable-all"><?php esc_html_e( 'None', 'elementor-mcp' ); ?></button>
 				</span>
 			</h2>
@@ -76,6 +78,9 @@ $total_count   = $this->get_total_tool_count();
 							value="<?php echo esc_attr( $slug ); ?>"
 							<?php checked( $is_enabled ); ?>
 						/>
+						<span class="elementor-mcp-toggle" aria-hidden="true">
+							<span class="elementor-mcp-toggle-track"></span>
+						</span>
 						<span class="elementor-mcp-tool-info">
 							<span class="elementor-mcp-tool-name">
 								<?php echo esc_html( $tool['label'] ); ?>

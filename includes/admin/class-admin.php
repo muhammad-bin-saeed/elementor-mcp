@@ -185,12 +185,84 @@ class Elementor_MCP_Admin {
 			return;
 		}
 
-		$active_tab = isset( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : 'tools'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$active_tab    = isset( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : 'tools'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$enabled_count = $this->get_enabled_tool_count();
+		$total_count   = $this->get_total_tool_count();
+
+		// Count Pro tools.
+		$pro_count = 0;
+		foreach ( $this->get_all_tools() as $category ) {
+			foreach ( $category['tools'] as $tool ) {
+				if ( in_array( 'pro', $tool['badges'], true ) ) {
+					$pro_count++;
+				}
+			}
+		}
 
 		?>
 		<div class="wrap elementor-mcp-admin">
 			<h1><?php esc_html_e( 'Elementor MCP', 'elementor-mcp' ); ?></h1>
 
+			<!-- Header -->
+			<div class="elementor-mcp-header">
+				<span class="elementor-mcp-header-icon">
+					<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+				</span>
+				<div class="elementor-mcp-header-info">
+					<h2 class="elementor-mcp-header-title">
+						<?php esc_html_e( 'Elementor MCP', 'elementor-mcp' ); ?>
+						<span class="elementor-mcp-header-version">v<?php echo esc_html( ELEMENTOR_MCP_VERSION ); ?></span>
+					</h2>
+					<p class="elementor-mcp-header-subtitle"><?php esc_html_e( 'AI-powered page building tools for Elementor via Model Context Protocol.', 'elementor-mcp' ); ?></p>
+				</div>
+				<div class="elementor-mcp-header-actions">
+					<a href="https://www.youtube.com/@WPAcademyPK" class="elementor-mcp-header-btn elementor-mcp-header-btn--secondary" target="_blank" rel="noopener noreferrer">
+						<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
+						<?php esc_html_e( 'Watch Tutorial', 'elementor-mcp' ); ?>
+					</a>
+					<a href="https://msrbuilds.com/lets-talk/" class="elementor-mcp-header-btn elementor-mcp-header-btn--secondary">
+						<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+						<?php esc_html_e( 'Contact Me', 'elementor-mcp' ); ?>
+					</a>
+					<a href="https://wpacademy.gumroad.com/l/vlrihk" class="elementor-mcp-header-btn elementor-mcp-header-btn--primary" target="_blank" rel="noopener noreferrer">
+						<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+						<?php esc_html_e( 'Get Premium Prompts', 'elementor-mcp' ); ?>
+					</a>
+				</div>
+			</div>
+
+			<!-- Stats Bar -->
+			<div class="elementor-mcp-stats">
+				<div class="elementor-mcp-stat">
+					<span class="elementor-mcp-stat-icon elementor-mcp-stat-icon--tools">
+						<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+					</span>
+					<span class="elementor-mcp-stat-content">
+						<span class="elementor-mcp-stat-value"><?php echo esc_html( $total_count ); ?></span>
+						<span class="elementor-mcp-stat-label"><?php esc_html_e( 'Total Tools', 'elementor-mcp' ); ?></span>
+					</span>
+				</div>
+				<div class="elementor-mcp-stat">
+					<span class="elementor-mcp-stat-icon elementor-mcp-stat-icon--active">
+						<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+					</span>
+					<span class="elementor-mcp-stat-content">
+						<span class="elementor-mcp-stat-value"><?php echo esc_html( $enabled_count ); ?></span>
+						<span class="elementor-mcp-stat-label"><?php esc_html_e( 'Active', 'elementor-mcp' ); ?></span>
+					</span>
+				</div>
+				<div class="elementor-mcp-stat">
+					<span class="elementor-mcp-stat-icon elementor-mcp-stat-icon--pro">
+						<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+					</span>
+					<span class="elementor-mcp-stat-content">
+						<span class="elementor-mcp-stat-value"><?php echo esc_html( $pro_count ); ?></span>
+						<span class="elementor-mcp-stat-label"><?php esc_html_e( 'Pro Tools', 'elementor-mcp' ); ?></span>
+					</span>
+				</div>
+			</div>
+
+			<!-- Tabs -->
 			<nav class="nav-tab-wrapper">
 				<a href="<?php echo esc_url( admin_url( 'options-general.php?page=' . self::PAGE_SLUG . '&tab=tools' ) ); ?>"
 				   class="nav-tab <?php echo esc_attr( 'tools' === $active_tab ? 'nav-tab-active' : '' ); ?>">
@@ -202,6 +274,7 @@ class Elementor_MCP_Admin {
 				</a>
 			</nav>
 
+			<!-- Content -->
 			<div class="tab-content">
 				<?php
 				if ( 'connection' === $active_tab ) {

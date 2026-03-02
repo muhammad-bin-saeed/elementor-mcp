@@ -320,6 +320,30 @@ npx @modelcontextprotocol/inspector wp mcp-adapter serve \
 - **Session errors** — The HTTP endpoint requires `Mcp-Session-Id` header after `initialize`; the proxy handles this automatically.
 - **WP-CLI not found on Windows** — Use the full path to `php.exe` and `wp-cli.phar`.
 
+## Sample Prompts
+
+The [`prompts/`](prompts/) directory includes ready-to-use landing page prompts that demonstrate the full power of Elementor MCP tools. Each prompt is a complete blueprint — paste it into your AI client and watch an entire page get built automatically.
+
+| Prompt | Industry | Description |
+|---|---|---|
+| [Local Business](prompts/LOCAL_BUSINESS.md) | General | Multi-purpose small business landing page with hero, services, testimonials, and contact |
+| [Dental Clinic](prompts/DENTAL_CLINIC.md) | Health & Wellness | Professional dental practice with services, team, insurance info, and appointment booking |
+| [Web Developer Portfolio](prompts/WEB_DEVELOPER_PORTFOLIO.md) | Professional Services | Developer portfolio with project showcase, tech stack, and contact form |
+| [Hair Salon](prompts/HAIR_SALON.md) | Lifestyle | Stylish salon page with services menu, stylist profiles, and booking |
+| [Car Wash](prompts/CAR_WASH.md) | Lifestyle | Car wash with wash packages, add-on services, and membership plans |
+
+Each prompt includes:
+- Complete design system (color palette, typography, spacing)
+- Image search keywords for stock photo sourcing
+- SVG icon specifications
+- Full page structure (hero, sections, footer)
+- Entrance animations using Elementor's built-in Motion Effects
+- Custom CSS for hover states
+- Custom JavaScript for scroll animations and counters
+- Step-by-step execution order
+
+> **Want more?** A premium collection of **50 industry-specific prompts** covering restaurants, med spas, law firms, florists, photography studios, and more is available separately.
+
 ## Contributing
 
 We welcome contributions from the community! Whether it's bug reports, feature requests, documentation improvements, or code contributions — every bit helps.
