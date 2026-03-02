@@ -11,7 +11,6 @@
 [![GitHub Stars](https://img.shields.io/github/stars/msrbuilds/elementor-mcp?style=social)](https://github.com/msrbuilds/elementor-mcp)
 
 A WordPress plugin that extends the [WordPress MCP Adapter](https://github.com/WordPress/mcp-adapter) to expose Elementor data, widgets, and page design tools as [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) tools. This enables AI agents like Claude, Cursor, and other MCP-compatible clients to create and manipulate Elementor page designs programmatically.
-
 <img width="1953" height="1102" alt="image" src="https://github.com/user-attachments/assets/b6fbf504-5306-41ef-a584-eaabf63b2c93" />
 
 
@@ -31,7 +30,10 @@ A WordPress plugin that extends the [WordPress MCP Adapter](https://github.com/W
 - **Custom Code** — Add custom CSS (element/page level), inject JavaScript, create site-wide code snippets for head/body injection
 - **Admin Dashboard** — Toggle individual tools on/off and view connection configs for all supported MCP clients
 
-[<img width="1280" height="720" alt="banner" src="https://github.com/user-attachments/assets/03e02c73-9fa8-40af-997b-99515352ebbb" />]([https://wordpress.org/plugins/elementor/](https://wpacademy.gumroad.com/l/vlrihk))
+
+# Get 50+ Premium Prompts to Buld High Quality Landing Pages
+## [I Want This](https://wpacademy.gumroad.com/l/vlrihk)
+<img width="1280" height="720" alt="banner" src="https://github.com/user-attachments/assets/03e02c73-9fa8-40af-997b-99515352ebbb" />
 
 ## Requirements
 
