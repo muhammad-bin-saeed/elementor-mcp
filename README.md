@@ -12,6 +12,9 @@
 
 A WordPress plugin that extends the [WordPress MCP Adapter](https://github.com/WordPress/mcp-adapter) to expose Elementor data, widgets, and page design tools as [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) tools. This enables AI agents like Claude, Cursor, and other MCP-compatible clients to create and manipulate Elementor page designs programmatically.
 
+<img width="1953" height="1102" alt="image" src="https://github.com/user-attachments/assets/b6fbf504-5306-41ef-a584-eaabf63b2c93" />
+
+
 ## Features
 
 - **~68 MCP Tools** covering the full Elementor page-building workflow
