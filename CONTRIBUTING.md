@@ -9,6 +9,7 @@ Thank you for your interest in contributing to Elementor MCP! This project bridg
 - [Development Setup](#development-setup)
 - [Architecture Overview](#architecture-overview)
 - [Adding a New MCP Tool](#adding-a-new-mcp-tool)
+- [Contributing Prompts](#contributing-prompts)
 - [Coding Standards](#coding-standards)
 - [Testing](#testing)
 - [Submitting Changes](#submitting-changes)
@@ -29,6 +30,7 @@ There are many ways to contribute, regardless of your experience level:
 - **Add new widget tools** — Create convenience shortcuts for Elementor widgets not yet covered.
 - **Write tests** — Help improve test coverage with PHPUnit tests.
 - **Fix bugs** — Browse [open issues](https://github.com/msrbuilds/elementor-mcp/issues) and submit a fix.
+- **Contribute prompts** — Add new landing page blueprints for industries not yet covered. See [Contributing Prompts](#contributing-prompts).
 - **Share your experience** — Write about how you use the plugin, share prompts that work well.
 
 ## Development Setup
@@ -180,6 +182,58 @@ And add the `require_once` in `elementor-mcp.php`.
 ### 5. Add to admin tools list
 
 Add the tool entry to `get_all_tools()` in `includes/admin/class-admin.php` under the appropriate category.
+
+## Contributing Prompts
+
+The `prompts/` directory contains sample landing page blueprints that users can copy and paste into their AI client to auto-build complete Elementor pages. Contributing new prompts is a great way to help without writing PHP.
+
+### Prompt Structure
+
+Each prompt is a standalone Markdown file (`.md`) that an AI agent can follow from start to finish. A well-structured prompt includes these sections in order:
+
+1. **Title & overview** — What type of page this builds (e.g., "Dental Clinic Landing Page").
+2. **Layout rules** — Container-first approach, flexbox direction, responsive widths.
+3. **Design system** — Color palette (hex values), typography (font families, sizes, weights), spacing scale.
+4. **Image sourcing** — Keywords for `search-images` tool calls, with fallback placeholder descriptions.
+5. **SVG icons** — Icon specifications for `upload-svg-icon` (raw SVG markup or common icon names).
+6. **Page structure** — Section-by-section breakdown (hero, services, testimonials, CTA, footer, etc.) with specific widget types, text content, and settings.
+7. **Entrance animations** — Use Elementor's built-in `_animation` (e.g., `fadeInUp`, `fadeInLeft`, `zoomIn`), `animation_duration` (`slow` or default), and `_animation_delay` (in ms) for staggered effects.
+8. **Custom CSS** — Only where Elementor's built-in controls are insufficient (hover states, pseudo-elements). Use the `selector` keyword for element-scoped CSS.
+9. **Custom JavaScript** — Scroll-triggered counters, smooth scroll, or other interactivity via `add-custom-js`.
+10. **Execution order** — Numbered step-by-step instructions telling the AI which tools to call and in what sequence.
+11. **Final checklist** — Verification steps (responsive check, link targets, image alt text, consistent spacing).
+
+### Guidelines
+
+- **Use only MCP tool names** — Reference tools like `create-page`, `add-container`, `add-heading`, `search-images`, etc. Don't use generic instructions like "add a title" — be specific about which widget tool to use.
+- **Be explicit with settings** — Include hex colors, font sizes, padding values, and widget-specific settings. The more specific the prompt, the more consistent the output across different AI clients.
+- **Prefer built-in animations** — Use Elementor's `_animation` and `_animation_delay` settings over custom CSS animations. This keeps prompts simpler and leverages Elementor's native Motion Effects.
+- **Minimize custom CSS** — Only add custom CSS for things Elementor can't do natively (e.g., hover color transitions, gradient text, backdrop filters). Always use the `selector` keyword for scoping.
+- **Include realistic content** — Use placeholder text that sounds like a real business, not lorem ipsum. Include realistic pricing, phone numbers, addresses, and business hours.
+- **Test your prompt** — Run it through an AI client (Claude Code, Cursor, etc.) connected to a local WordPress + Elementor setup to verify it builds correctly.
+
+### Naming Convention
+
+Prompt files use `UPPER_SNAKE_CASE.md` matching the business type:
+
+```
+prompts/
+├── LOCAL_BUSINESS.md
+├── DENTAL_CLINIC.md
+├── HAIR_SALON.md
+└── YOUR_NEW_PROMPT.md
+```
+
+### Submitting a Prompt
+
+1. Create your `.md` file in the `prompts/` directory.
+2. Add an entry to the `$prompt_meta` array in `includes/admin/views/page-prompts.php` with `title`, `industry` tag, and a one-line `description`.
+3. Add a row to the Sample Prompts table in `README.md`.
+4. Open a PR with the prompt file and the two metadata updates.
+
+### Example Reference
+
+See any existing prompt in `prompts/` (e.g., `LOCAL_BUSINESS.md`) for the expected structure and level of detail.
 
 ## Coding Standards
 

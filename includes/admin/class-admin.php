@@ -272,6 +272,10 @@ class Elementor_MCP_Admin {
 				   class="nav-tab <?php echo esc_attr( 'connection' === $active_tab ? 'nav-tab-active' : '' ); ?>">
 					<?php esc_html_e( 'Connection', 'elementor-mcp' ); ?>
 				</a>
+				<a href="<?php echo esc_url( admin_url( 'options-general.php?page=' . self::PAGE_SLUG . '&tab=prompts' ) ); ?>"
+				   class="nav-tab <?php echo esc_attr( 'prompts' === $active_tab ? 'nav-tab-active' : '' ); ?>">
+					<?php esc_html_e( 'Prompts', 'elementor-mcp' ); ?>
+				</a>
 			</nav>
 
 			<!-- Content -->
@@ -279,6 +283,8 @@ class Elementor_MCP_Admin {
 				<?php
 				if ( 'connection' === $active_tab ) {
 					include ELEMENTOR_MCP_DIR . 'includes/admin/views/page-connection.php';
+				} elseif ( 'prompts' === $active_tab ) {
+					include ELEMENTOR_MCP_DIR . 'includes/admin/views/page-prompts.php';
 				} else {
 					include ELEMENTOR_MCP_DIR . 'includes/admin/views/page-tools.php';
 				}

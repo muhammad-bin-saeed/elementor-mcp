@@ -974,6 +974,176 @@
 }
 
 /* =========================================================================
+ * Prompts Tab
+ * ========================================================================= */
+
+.elementor-mcp-prompts-intro {
+	margin-bottom: 24px;
+}
+
+.elementor-mcp-prompts-intro h2 {
+	font-size: 16px;
+	font-weight: 600;
+	color: var(--mcp-gray-800);
+	margin: 0 0 6px;
+}
+
+.elementor-mcp-prompts-intro .description {
+	color: var(--mcp-gray-500);
+	font-size: 13px;
+	margin: 0;
+	max-width: 680px;
+}
+
+.elementor-mcp-prompts-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 16px;
+	margin-bottom: 28px;
+}
+
+.elementor-mcp-prompt-card {
+	position: relative;
+	padding: 20px;
+	background: var(--mcp-white);
+	border: 1px solid var(--mcp-gray-200);
+	border-radius: var(--mcp-radius);
+	transition: all var(--mcp-transition);
+	display: flex;
+	flex-direction: column;
+}
+
+.elementor-mcp-prompt-card:hover {
+	border-color: var(--mcp-primary);
+	box-shadow: var(--mcp-shadow-md);
+	transform: translateY(-2px);
+}
+
+.elementor-mcp-prompt-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	margin-bottom: 8px;
+}
+
+.elementor-mcp-prompt-title {
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--mcp-gray-800);
+	margin: 0;
+}
+
+.elementor-mcp-prompt-tag {
+	display: inline-flex;
+	align-items: center;
+	padding: 2px 9px;
+	border-radius: 10px;
+	font-size: 11px;
+	font-weight: 500;
+	background: var(--mcp-primary-light);
+	color: var(--mcp-primary);
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+
+.elementor-mcp-prompt-desc {
+	color: var(--mcp-gray-500);
+	font-size: 13px;
+	line-height: 1.5;
+	margin: 0 0 16px;
+	flex: 1;
+}
+
+.elementor-mcp-prompt-actions {
+	display: flex;
+	align-items: center;
+}
+
+.elementor-mcp-prompt-actions .elementor-mcp-copy-btn {
+	position: static;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	background: var(--mcp-gray-50) !important;
+	border: 1px solid var(--mcp-gray-300) !important;
+	color: var(--mcp-gray-600) !important;
+	font-size: 12px !important;
+	padding: 6px 14px !important;
+	min-height: auto !important;
+	border-radius: var(--mcp-radius-sm) !important;
+	font-weight: 500;
+}
+
+.elementor-mcp-prompt-actions .elementor-mcp-copy-btn:hover {
+	background: var(--mcp-primary-light) !important;
+	border-color: var(--mcp-primary) !important;
+	color: var(--mcp-primary) !important;
+}
+
+.elementor-mcp-prompt-actions .elementor-mcp-copy-btn svg {
+	width: 14px;
+	height: 14px;
+	fill: currentColor;
+	flex-shrink: 0;
+}
+
+/* Prompts CTA Banner */
+.elementor-mcp-prompts-cta {
+	background: linear-gradient(135deg, var(--mcp-primary), #818cf8);
+	border-radius: var(--mcp-radius);
+	padding: 32px;
+	text-align: center;
+}
+
+.elementor-mcp-prompts-cta-content h3 {
+	font-size: 18px;
+	font-weight: 700;
+	color: var(--mcp-white);
+	margin: 0 0 8px;
+}
+
+.elementor-mcp-prompts-cta-content p {
+	color: rgba(255, 255, 255, 0.85);
+	font-size: 14px;
+	margin: 0 0 20px;
+	max-width: 540px;
+	margin-left: auto;
+	margin-right: auto;
+	line-height: 1.5;
+}
+
+.elementor-mcp-prompts-cta-btn.button.button-primary {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	background: var(--mcp-white) !important;
+	color: var(--mcp-primary) !important;
+	border: none !important;
+	padding: 10px 24px !important;
+	font-size: 14px !important;
+	font-weight: 600 !important;
+	border-radius: var(--mcp-radius-sm) !important;
+	text-decoration: none;
+	transition: all var(--mcp-transition) !important;
+	box-shadow: var(--mcp-shadow) !important;
+	text-shadow: none !important;
+}
+
+.elementor-mcp-prompts-cta-btn.button.button-primary:hover {
+	background: var(--mcp-gray-50) !important;
+	box-shadow: var(--mcp-shadow-lg) !important;
+	transform: translateY(-1px);
+}
+
+.elementor-mcp-prompts-cta-btn svg {
+	width: 16px;
+	height: 16px;
+	fill: currentColor;
+	flex-shrink: 0;
+}
+
+/* =========================================================================
  * Responsive
  * ========================================================================= */
 
@@ -994,6 +1164,10 @@
 		width: 100%;
 		margin-left: 0;
 		margin-top: 4px;
+	}
+
+	.elementor-mcp-prompts-grid {
+		grid-template-columns: repeat(2, 1fr);
 	}
 }
 
@@ -1043,5 +1217,13 @@
 
 	.elementor-mcp-status-grid {
 		grid-template-columns: 1fr;
+	}
+
+	.elementor-mcp-prompts-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.elementor-mcp-prompts-cta {
+		padding: 24px 16px;
 	}
 }
