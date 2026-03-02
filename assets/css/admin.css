@@ -1,5 +1,5 @@
 /**
- * Elementor MCP — Admin Settings Styles
+ * MCP Tools for Elementor — Admin Settings Styles
  *
  * @package Elementor_MCP
  * @since   1.0.0
@@ -209,6 +209,11 @@
 .elementor-mcp-stat-icon--pro {
 	background: var(--mcp-pro-light);
 	color: var(--mcp-pro);
+}
+
+.elementor-mcp-stat-icon--prompts {
+	background: #fef3c7;
+	color: var(--mcp-warning);
 }
 
 .elementor-mcp-stat-icon svg {

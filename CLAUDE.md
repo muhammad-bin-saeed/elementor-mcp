@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Elementor MCP Plugin — a WordPress plugin that extends the official WordPress MCP Adapter to expose Elementor data, widgets, structures, and methods as MCP (Model Context Protocol) tools. This enables AI tools (Claude, Cursor, etc.) to create and manipulate Elementor page designs programmatically via ~68 MCP tools.
+MCP Tools for Elementor Plugin — a WordPress plugin that extends the official WordPress MCP Adapter to expose Elementor data, widgets, structures, and methods as MCP (Model Context Protocol) tools. This enables AI tools (Claude, Cursor, etc.) to create and manipulate Elementor page designs programmatically via 70 MCP tools.
 
-**Current status: All phases implemented (P0/P1/P2).** Foundation layer, 7 read-only query tools, page CRUD, layout, widget, template, global, composite tools, stock images, SVG icons, custom code tools, and full widget coverage are all complete (~68 MCP tools total). See `PLAN.md` for the full architectural specification.
+**Current status: All phases implemented (P0/P1/P2).** Foundation layer, 7 read-only query tools, page CRUD, layout, widget, template, global, composite tools, stock images, SVG icons, custom code tools, and full widget coverage are all complete (70 MCP tools total). See `PLAN.md` for the full architectural specification.
 
 ## Dependencies & Requirements
 
@@ -50,12 +50,24 @@ elementor-mcp/
 │   │   ├── class-composite-abilities.php      # P2: 1 composite tool (build-page)
 │   │   ├── class-stock-image-abilities.php    # 3 stock image tools (search-images, sideload-image, add-stock-image)
 │   │   └── class-custom-code-abilities.php   # 4 custom code tools (add-custom-css, add-custom-js, add-code-snippet, list-code-snippets)
+│   ├── admin/
+│   │   ├── class-admin.php                    # Admin settings page: 3 tabs (Tools, Connection, Prompts), stats bar, header
+│   │   └── views/
+│   │       ├── page-tools.php                 # Tools tab: category-grouped tool toggles with bulk actions
+│   │       ├── page-connection.php            # Connection tab: status cards, credential form, MCP client configs
+│   │       └── page-prompts.php               # Prompts tab: sample prompt cards with one-click copy, CTA banner
 │   ├── schemas/
 │   │   ├── class-schema-generator.php         # Generates JSON Schema from Elementor widget controls
 │   │   └── class-control-mapper.php           # Maps individual Elementor control types → JSON Schema fragments
 │   └── validators/
 │       ├── class-element-validator.php         # Validates element structure (id, elType, widgetType)
 │       └── class-settings-validator.php        # Validates widget settings against generated schema
+├── prompts/                                    # Sample landing page prompt blueprints (Markdown)
+│   ├── LOCAL_BUSINESS.md
+│   ├── DENTAL_CLINIC.md
+│   ├── WEB_DEVELOPER_PORTFOLIO.md
+│   ├── HAIR_SALON.md
+│   └── CAR_WASH.md
 └── tests/                                      # PHPUnit tests (not yet created)
 ```
 
@@ -111,7 +123,7 @@ The MCP Adapter converts ability names like `elementor-mcp/list-widgets` to tool
 | Code snippets (create) | `manage_options` + `unfiltered_html` |
 | Code snippets (list) | `manage_options` |
 
-## All Implemented Tools (~68 total)
+## All Implemented Tools (70 total)
 
 ### P0 — Query/Discovery (7 read-only)
 
@@ -231,7 +243,7 @@ The MCP Adapter converts ability names like `elementor-mcp/list-widgets` to tool
 
 ### Prerequisites
 
-- WordPress with Elementor + MCP Adapter + Elementor MCP all active
+- WordPress with Elementor + MCP Adapter + MCP Tools for Elementor all active
 - One of: WP-CLI (for local) or Node.js 18+ (for remote/proxy)
 - A WordPress Application Password (Users > Profile > Application Passwords)
 
@@ -310,7 +322,7 @@ npx @modelcontextprotocol/inspector wp mcp-adapter serve --server=elementor-mcp-
 
 ### Troubleshooting
 
-- **"No MCP servers registered"**: Ensure Elementor MCP plugin is active and dependencies are met
+- **"No MCP servers registered"**: Ensure MCP Tools for Elementor plugin is active and dependencies are met
 - **HTTP 401**: Check Application Password is correct and user has `edit_posts` capability
 - **Session errors**: The HTTP endpoint requires `Mcp-Session-Id` header after `initialize`; the proxy handles this automatically
 - **WP-CLI not found on Windows**: Use full path to `php.exe` and `wp-cli.phar`

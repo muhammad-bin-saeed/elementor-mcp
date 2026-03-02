@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin settings page for Elementor MCP.
+ * Admin settings page for MCP Tools for Elementor.
  *
  * Provides a UI to toggle individual MCP tools on/off and view
  * connection information for various MCP clients.
@@ -67,8 +67,8 @@ class Elementor_MCP_Admin {
 	 */
 	public function add_settings_page(): void {
 		$this->hook_suffix = add_options_page(
-			__( 'Elementor MCP', 'elementor-mcp' ),
-			__( 'Elementor MCP', 'elementor-mcp' ),
+			__( 'MCP Tools for Elementor', 'elementor-mcp' ),
+			__( 'EMCP Tools', 'elementor-mcp' ),
 			'manage_options',
 			self::PAGE_SLUG,
 			array( $this, 'render_page' )
@@ -199,9 +199,14 @@ class Elementor_MCP_Admin {
 			}
 		}
 
+		// Count sample prompts.
+		$prompts_dir   = ELEMENTOR_MCP_DIR . 'prompts/';
+		$prompt_files  = is_dir( $prompts_dir ) ? glob( $prompts_dir . '*.md' ) : array();
+		$prompt_count  = count( $prompt_files );
+
 		?>
 		<div class="wrap elementor-mcp-admin">
-			<h1><?php esc_html_e( 'Elementor MCP', 'elementor-mcp' ); ?></h1>
+			<h1><?php esc_html_e( 'MCP Tools for Elementor', 'elementor-mcp' ); ?></h1>
 
 			<!-- Header -->
 			<div class="elementor-mcp-header">
@@ -210,7 +215,7 @@ class Elementor_MCP_Admin {
 				</span>
 				<div class="elementor-mcp-header-info">
 					<h2 class="elementor-mcp-header-title">
-						<?php esc_html_e( 'Elementor MCP', 'elementor-mcp' ); ?>
+						<?php esc_html_e( 'MCP Tools for Elementor', 'elementor-mcp' ); ?>
 						<span class="elementor-mcp-header-version">v<?php echo esc_html( ELEMENTOR_MCP_VERSION ); ?></span>
 					</h2>
 					<p class="elementor-mcp-header-subtitle"><?php esc_html_e( 'AI-powered page building tools for Elementor via Model Context Protocol.', 'elementor-mcp' ); ?></p>
@@ -258,6 +263,15 @@ class Elementor_MCP_Admin {
 					<span class="elementor-mcp-stat-content">
 						<span class="elementor-mcp-stat-value"><?php echo esc_html( $pro_count ); ?></span>
 						<span class="elementor-mcp-stat-label"><?php esc_html_e( 'Pro Tools', 'elementor-mcp' ); ?></span>
+					</span>
+				</div>
+				<div class="elementor-mcp-stat">
+					<span class="elementor-mcp-stat-icon elementor-mcp-stat-icon--prompts">
+						<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/></svg>
+					</span>
+					<span class="elementor-mcp-stat-content">
+						<span class="elementor-mcp-stat-value"><?php echo esc_html( $prompt_count ); ?></span>
+						<span class="elementor-mcp-stat-label"><?php esc_html_e( 'Prompts', 'elementor-mcp' ); ?></span>
 					</span>
 				</div>
 			</div>

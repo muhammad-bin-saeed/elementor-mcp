@@ -1,6 +1,6 @@
 <?php
 /**
- * Uninstall handler for Elementor MCP.
+ * Uninstall handler for MCP Tools for Elementor.
  *
  * Cleans up all plugin data when the plugin is uninstalled
  * through the WordPress admin.

@@ -1,6 +1,6 @@
 <?php
 /**
- * Connection info tab view for the Elementor MCP admin settings page.
+ * Connection info tab view for the MCP Tools for Elementor admin settings page.
  *
  * Displays MCP connection configurations for various clients.
  *
@@ -13,10 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /** @var Elementor_MCP_Admin $this */
-$mcp_endpoint    = rest_url( 'mcp/elementor-mcp-server' );
-$enabled_count   = $this->get_enabled_tool_count();
-$total_count     = $this->get_total_tool_count();
-$has_mcp_adapter = class_exists( '\WP\MCP\Core\McpAdapter' );
+$elementor_mcp_endpoint      = rest_url( 'mcp/elementor-mcp-server' );
+$elementor_mcp_enabled_count = $this->get_enabled_tool_count();
+$elementor_mcp_total_count   = $this->get_total_tool_count();
+$elementor_mcp_has_adapter   = class_exists( '\WP\MCP\Core\McpAdapter' );
 ?>
 
 <div class="elementor-mcp-connection">
@@ -32,14 +32,14 @@ $has_mcp_adapter = class_exists( '\WP\MCP\Core\McpAdapter' );
 					<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
 				</span>
 				<span class="elementor-mcp-status-card-info">
-					<span class="elementor-mcp-status-card-label"><?php esc_html_e( 'Elementor MCP', 'elementor-mcp' ); ?></span>
+					<span class="elementor-mcp-status-card-label"><?php esc_html_e( 'MCP Tools for Elementor', 'elementor-mcp' ); ?></span>
 					<span class="elementor-mcp-status-card-value"><?php esc_html_e( 'Active', 'elementor-mcp' ); ?></span>
 				</span>
 			</div>
 
 			<div class="elementor-mcp-status-card">
-				<span class="elementor-mcp-status-card-icon <?php echo esc_attr( $has_mcp_adapter ? 'elementor-mcp-status-card-icon--ok' : 'elementor-mcp-status-card-icon--warn' ); ?>">
-					<?php if ( $has_mcp_adapter ) : ?>
+				<span class="elementor-mcp-status-card-icon <?php echo esc_attr( $elementor_mcp_has_adapter ? 'elementor-mcp-status-card-icon--ok' : 'elementor-mcp-status-card-icon--warn' ); ?>">
+					<?php if ( $elementor_mcp_has_adapter ) : ?>
 						<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
 					<?php else : ?>
 						<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"/></svg>
@@ -47,7 +47,7 @@ $has_mcp_adapter = class_exists( '\WP\MCP\Core\McpAdapter' );
 				</span>
 				<span class="elementor-mcp-status-card-info">
 					<span class="elementor-mcp-status-card-label"><?php esc_html_e( 'MCP Adapter', 'elementor-mcp' ); ?></span>
-					<span class="elementor-mcp-status-card-value"><?php echo esc_html( $has_mcp_adapter ? __( 'Active', 'elementor-mcp' ) : __( 'Not Active', 'elementor-mcp' ) ); ?></span>
+					<span class="elementor-mcp-status-card-value"><?php echo esc_html( $elementor_mcp_has_adapter ? __( 'Active', 'elementor-mcp' ) : __( 'Not Active', 'elementor-mcp' ) ); ?></span>
 				</span>
 			</div>
 
@@ -62,8 +62,8 @@ $has_mcp_adapter = class_exists( '\WP\MCP\Core\McpAdapter' );
 						printf(
 							/* translators: %1$d: enabled count, %2$d: total count */
 							esc_html__( '%1$d / %2$d', 'elementor-mcp' ),
-							$enabled_count,
-							$total_count
+							(int) $elementor_mcp_enabled_count,
+							(int) $elementor_mcp_total_count
 						);
 						?>
 					</span>
@@ -72,9 +72,9 @@ $has_mcp_adapter = class_exists( '\WP\MCP\Core\McpAdapter' );
 		</div>
 
 		<div class="elementor-mcp-endpoint">
-			<code><?php echo esc_html( $mcp_endpoint ); ?></code>
+			<code><?php echo esc_html( $elementor_mcp_endpoint ); ?></code>
 			<button type="button" class="button elementor-mcp-copy-btn" data-target="elementor-mcp-endpoint-copy"><?php esc_html_e( 'Copy', 'elementor-mcp' ); ?></button>
-			<textarea id="elementor-mcp-endpoint-copy" class="elementor-mcp-copy-source"><?php echo esc_html( $mcp_endpoint ); ?></textarea>
+			<textarea id="elementor-mcp-endpoint-copy" class="elementor-mcp-copy-source"><?php echo esc_html( $elementor_mcp_endpoint ); ?></textarea>
 		</div>
 	</div>
 

@@ -133,7 +133,7 @@ class Elementor_MCP_Plugin {
 		wp_register_ability_category(
 			'elementor-mcp',
 			array(
-				'label'       => __( 'Elementor MCP', 'elementor-mcp' ),
+				'label'       => __( 'MCP Tools for Elementor', 'elementor-mcp' ),
 				'description' => __( 'Tools for reading and manipulating Elementor page designs via MCP.', 'elementor-mcp' ),
 			)
 		);
@@ -168,7 +168,7 @@ class Elementor_MCP_Plugin {
 			'elementor-mcp-server',                                   // server_id
 			'mcp',                                                    // route_namespace
 			'elementor-mcp-server',                                   // route
-			__( 'Elementor MCP Server', 'elementor-mcp' ),            // server_name
+			__( 'MCP Tools for Elementor Server', 'elementor-mcp' ),            // server_name
 			__( 'Exposes Elementor data and design tools as MCP tools for AI agents.', 'elementor-mcp' ), // description
 			'v' . ELEMENTOR_MCP_VERSION,                              // version
 			array( \WP\MCP\Transport\HttpTransport::class ),          // transports

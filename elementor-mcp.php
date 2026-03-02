@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name:       Elementor MCP
+ * Plugin Name:       MCP Tools for Elementor
  * Plugin URI:        https://developer.suspended.suspended/elementor-mcp
  * Description:       Extends the WordPress MCP Adapter to expose Elementor data, widgets, and page design tools as MCP tools for AI agents.
- * Version:           1.3.0
+ * Version:           1.3.1
  * Requires at least: 6.8
- * Tested up to:      6.8
+ * Tested up to:      6.9
  * Requires PHP:      7.4
  * Author:            developer
  * Author URI:        https://developer.suspended.suspended
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Plugin constants.
-define( 'ELEMENTOR_MCP_VERSION', '1.3.0' );
+define( 'ELEMENTOR_MCP_VERSION', '1.3.1' );
 define( 'ELEMENTOR_MCP_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ELEMENTOR_MCP_URL', plugin_dir_url( __FILE__ ) );
 define( 'ELEMENTOR_MCP_BASENAME', plugin_basename( __FILE__ ) );
@@ -57,7 +57,7 @@ function elementor_mcp_check_dependencies(): bool {
 				'<div class="notice notice-error"><p>%s</p></div>',
 				sprintf(
 					/* translators: %s: comma-separated list of missing dependencies */
-					esc_html__( 'Elementor MCP requires the following to be installed and active: %s', 'elementor-mcp' ),
+					esc_html__( 'MCP Tools for Elementor requires the following to be installed and active: %s', 'elementor-mcp' ),
 					'<strong>' . esc_html( $list ) . '</strong>'
 				)
 			);

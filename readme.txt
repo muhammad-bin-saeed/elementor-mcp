@@ -1,9 +1,9 @@
-=== Elementor MCP ===
+=== MCP Tools for Elementor ===
 Contributors: developer
 Tags: elementor, mcp, ai, page-builder, automation
 Requires at least: 6.8
-Tested up to: 6.8
-Stable tag: 1.3.0
+Tested up to: 6.9
+Stable tag: 1.3.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -12,19 +12,23 @@ Extends the WordPress MCP Adapter to expose Elementor data, widgets, and page de
 
 == Description ==
 
-Elementor MCP bridges the gap between AI tools and Elementor page design. It extends the official WordPress MCP Adapter to expose ~37 MCP (Model Context Protocol) tools that let AI agents like Claude, Cursor, and other MCP-compatible clients create and manipulate Elementor page designs programmatically.
+MCP Tools for Elementor bridges the gap between AI tools and Elementor page design. It extends the official WordPress MCP Adapter to expose 70 MCP (Model Context Protocol) tools that let AI agents like Claude, Cursor, and other MCP-compatible clients create and manipulate Elementor page designs programmatically.
 
 **Key Features:**
 
 * **Query & Discovery** — List widgets, inspect page structures, read element settings, browse templates, and view global design tokens.
 * **Page Management** — Create pages, update page settings, clear content, import/export templates.
-* **Layout Tools** — Add containers, move elements, remove elements, duplicate elements.
-* **Widget Tools** — Add any widget type with full settings control, plus convenience shortcuts for heading, text, image, button, video, icon, spacer, divider, and icon box.
-* **Pro Widget Support** — Conditional tools for Elementor Pro widgets (form, posts grid, countdown, price table, flip box, animated headline) that only register when Pro is active.
+* **Layout Tools** — Add flexbox containers, move/remove/duplicate elements.
+* **Widget Tools** — 41 widget tools: universal add/update for any widget, plus 23 free convenience shortcuts and 16 conditional Pro widget tools.
+* **Pro Widget Support** — Conditional tools for Elementor Pro widgets (form, posts grid, countdown, price table, flip box, animated headline, call to action, slides, testimonial carousel, price list, gallery, share buttons, table of contents, blockquote, Lottie, hotspot) that only register when Pro is active.
 * **Template Tools** — Save pages or elements as reusable templates, apply templates to pages.
 * **Global Settings** — Update site-wide color palettes and typography presets.
-* **Composite Tools** — Build a complete page from a declarative structure in a single call.
-* **Admin Dashboard** — Toggle individual tools on/off and view connection configurations for all supported MCP clients.
+* **Composite Tools** — Build a complete page from a declarative JSON structure in a single call.
+* **Stock Images** — Search Openverse for Creative Commons images, sideload into Media Library, add to pages.
+* **SVG Icons** — Upload SVG icons from URL or raw markup for use with Elementor icon widgets.
+* **Custom Code** — Add custom CSS (element/page level), inject JavaScript, create site-wide code snippets for head/body injection.
+* **Sample Prompts** — 5 ready-to-use landing page blueprints with one-click copy from the admin dashboard.
+* **Admin Dashboard** — Toggle individual tools on/off, view connection configs for all supported MCP clients, and browse/copy sample prompts.
 
 **Requires:**
 
@@ -45,7 +49,7 @@ Elementor MCP bridges the gap between AI tools and Elementor page design. It ext
 2. Install and activate the WordPress MCP Adapter plugin.
 3. Upload the `elementor-mcp` folder to `/wp-content/plugins/`.
 4. Activate the plugin through the 'Plugins' menu in WordPress.
-5. Go to **Settings > Elementor MCP** to configure tools and view connection info.
+5. Go to **Settings > MCP Tools for Elementor** to configure tools and view connection info.
 
 = WP-CLI Connection (Local) =
 
@@ -95,7 +99,7 @@ Yes. Core widget tools work with free Elementor. Pro widget shortcuts (form, pos
 
 = Can I disable specific tools? =
 
-Yes. Go to Settings > Elementor MCP > Tools tab to toggle individual tools on or off.
+Yes. Go to Settings > MCP Tools for Elementor > Tools tab to toggle individual tools on or off.
 
 = Does this plugin require the WordPress MCP Adapter? =
 
@@ -111,6 +115,11 @@ The plugin enforces WordPress capability checks on every tool. Read operations r
 2. Connection configuration page with copy-paste configs.
 
 == Changelog ==
+
+= 1.3.1 =
+* New: Prompts tab in admin dashboard — browse and one-click copy 5 sample landing page prompts.
+* New: Contributing Prompts guide in CONTRIBUTING.md with structure, guidelines, and submission steps.
+* Improved: Admin CSS for prompt card grid with hover effects and responsive breakpoints.
 
 = 1.3.0 =
 * New: `add-custom-css` tool — add custom CSS to any element or page-level with `selector` keyword support (Pro only).
@@ -166,6 +175,9 @@ The plugin enforces WordPress capability checks on every tool. Read operations r
 * Node.js HTTP proxy for remote connections.
 
 == Upgrade Notice ==
+
+= 1.3.1 =
+New Prompts tab in admin — browse and copy sample landing page prompts directly from WordPress.
 
 = 1.3.0 =
 4 new Custom Code tools: add-custom-css, add-custom-js, add-code-snippet, list-code-snippets. Enables AI agents to inject CSS, JS, and site-wide code snippets.

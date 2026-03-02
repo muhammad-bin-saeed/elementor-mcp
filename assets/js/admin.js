@@ -1,5 +1,5 @@
 /**
- * Elementor MCP — Admin Settings Scripts
+ * MCP Tools for Elementor — Admin Settings Scripts
  *
  * @package Elementor_MCP
  * @since   1.0.0

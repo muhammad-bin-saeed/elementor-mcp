@@ -1,6 +1,6 @@
 <?php
 /**
- * Tools tab view for the Elementor MCP admin settings page.
+ * Tools tab view for the MCP Tools for Elementor admin settings page.
  *
  * Displays all MCP tools grouped by category with toggle switches.
  *
@@ -13,10 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /** @var Elementor_MCP_Admin $this */
-$all_tools     = $this->get_all_tools();
-$disabled      = get_option( Elementor_MCP_Admin::OPTION_DISABLED_TOOLS, array() );
-$enabled_count = $this->get_enabled_tool_count();
-$total_count   = $this->get_total_tool_count();
+$elementor_mcp_all_tools     = $this->get_all_tools();
+$elementor_mcp_disabled      = get_option( Elementor_MCP_Admin::OPTION_DISABLED_TOOLS, array() );
+$elementor_mcp_enabled_count = $this->get_enabled_tool_count();
+$elementor_mcp_total_count   = $this->get_total_tool_count();
 ?>
 
 <form method="post" action="options.php" id="elementor-mcp-tools-form">
@@ -28,8 +28,8 @@ $total_count   = $this->get_total_tool_count();
 			/* translators: %1$s: opening strong tag, %2$d: enabled count, %3$d: total count, %4$s: closing strong tag */
 			esc_html__( '%1$s%2$d of %3$d%4$s tools enabled.', 'elementor-mcp' ),
 			'<strong>',
-			$enabled_count,
-			$total_count,
+			(int) $elementor_mcp_enabled_count,
+			(int) $elementor_mcp_total_count,
 			'</strong>'
 		);
 		?>
@@ -40,24 +40,24 @@ $total_count   = $this->get_total_tool_count();
 		<button type="button" class="button elementor-mcp-disable-all"><?php esc_html_e( 'Disable All', 'elementor-mcp' ); ?></button>
 	</div>
 
-	<?php foreach ( $all_tools as $category_id => $category ) : ?>
-		<div class="elementor-mcp-category" data-category="<?php echo esc_attr( $category_id ); ?>">
+	<?php foreach ( $elementor_mcp_all_tools as $elementor_mcp_category_id => $elementor_mcp_category ) : ?>
+		<div class="elementor-mcp-category" data-category="<?php echo esc_attr( $elementor_mcp_category_id ); ?>">
 			<h2 class="elementor-mcp-category-header">
-				<?php echo esc_html( $category['label'] ); ?>
+				<?php echo esc_html( $elementor_mcp_category['label'] ); ?>
 				<span class="elementor-mcp-category-count">
 					<?php
-					$cat_total   = count( $category['tools'] );
-					$cat_enabled = 0;
-					foreach ( $category['tools'] as $slug => $tool ) {
-						if ( ! in_array( $slug, $disabled, true ) ) {
-							$cat_enabled++;
+					$elementor_mcp_cat_total   = count( $elementor_mcp_category['tools'] );
+					$elementor_mcp_cat_enabled = 0;
+					foreach ( $elementor_mcp_category['tools'] as $elementor_mcp_slug => $elementor_mcp_tool ) {
+						if ( ! in_array( $elementor_mcp_slug, $elementor_mcp_disabled, true ) ) {
+							$elementor_mcp_cat_enabled++;
 						}
 					}
 					printf(
 						/* translators: %1$d: enabled, %2$d: total */
 						esc_html__( '%1$d / %2$d', 'elementor-mcp' ),
-						$cat_enabled,
-						$cat_total
+						(int) $elementor_mcp_cat_enabled,
+						(int) $elementor_mcp_cat_total
 					);
 					?>
 				</span>
@@ -69,29 +69,29 @@ $total_count   = $this->get_total_tool_count();
 			</h2>
 
 			<div class="elementor-mcp-tools-grid">
-				<?php foreach ( $category['tools'] as $slug => $tool ) : ?>
-					<?php $is_enabled = ! in_array( $slug, $disabled, true ); ?>
-					<label class="elementor-mcp-tool-card <?php echo esc_attr( $is_enabled ? 'is-enabled' : 'is-disabled' ); ?>">
+				<?php foreach ( $elementor_mcp_category['tools'] as $elementor_mcp_slug => $elementor_mcp_tool ) : ?>
+					<?php $elementor_mcp_is_enabled = ! in_array( $elementor_mcp_slug, $elementor_mcp_disabled, true ); ?>
+					<label class="elementor-mcp-tool-card <?php echo esc_attr( $elementor_mcp_is_enabled ? 'is-enabled' : 'is-disabled' ); ?>">
 						<input
 							type="checkbox"
 							name="<?php echo esc_attr( Elementor_MCP_Admin::OPTION_DISABLED_TOOLS ); ?>[]"
-							value="<?php echo esc_attr( $slug ); ?>"
-							<?php checked( $is_enabled ); ?>
+							value="<?php echo esc_attr( $elementor_mcp_slug ); ?>"
+							<?php checked( $elementor_mcp_is_enabled ); ?>
 						/>
 						<span class="elementor-mcp-toggle" aria-hidden="true">
 							<span class="elementor-mcp-toggle-track"></span>
 						</span>
 						<span class="elementor-mcp-tool-info">
 							<span class="elementor-mcp-tool-name">
-								<?php echo esc_html( $tool['label'] ); ?>
-								<?php foreach ( $tool['badges'] as $badge ) : ?>
-									<span class="elementor-mcp-badge elementor-mcp-badge--<?php echo esc_attr( $badge ); ?>">
-										<?php echo esc_html( $badge ); ?>
+								<?php echo esc_html( $elementor_mcp_tool['label'] ); ?>
+								<?php foreach ( $elementor_mcp_tool['badges'] as $elementor_mcp_badge ) : ?>
+									<span class="elementor-mcp-badge elementor-mcp-badge--<?php echo esc_attr( $elementor_mcp_badge ); ?>">
+										<?php echo esc_html( $elementor_mcp_badge ); ?>
 									</span>
 								<?php endforeach; ?>
 							</span>
-							<span class="elementor-mcp-tool-desc"><?php echo esc_html( $tool['description'] ); ?></span>
-							<code class="elementor-mcp-tool-slug"><?php echo esc_html( $slug ); ?></code>
+							<span class="elementor-mcp-tool-desc"><?php echo esc_html( $elementor_mcp_tool['description'] ); ?></span>
+							<code class="elementor-mcp-tool-slug"><?php echo esc_html( $elementor_mcp_slug ); ?></code>
 						</span>
 					</label>
 				<?php endforeach; ?>

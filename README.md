@@ -1,11 +1,11 @@
-# Elementor MCP
+# MCP Tools for Elementor
 
-[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](https://github.com/msrbuilds/elementor-mcp/releases)
+[![Version](https://img.shields.io/badge/version-1.3.1-blue.svg)](https://github.com/msrbuilds/elementor-mcp/releases)
 [![License](https://img.shields.io/badge/license-GPL--3.0-green.svg)](LICENSE)
 [![PHP](https://img.shields.io/badge/PHP-%3E%3D7.4-8892BF.svg)](https://php.net)
 [![WordPress](https://img.shields.io/badge/WordPress-%3E%3D6.8-21759B.svg)](https://wordpress.org)
 [![Elementor](https://img.shields.io/badge/Elementor-%3E%3D3.20-92003B.svg)](https://elementor.com)
-[![MCP Tools](https://img.shields.io/badge/MCP_Tools-~68-orange.svg)](#available-tools)
+[![MCP Tools](https://img.shields.io/badge/MCP_Tools-70-orange.svg)](#available-tools)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![GitHub Issues](https://img.shields.io/github/issues/msrbuilds/elementor-mcp)](https://github.com/msrbuilds/elementor-mcp/issues)
 [![GitHub Stars](https://img.shields.io/github/stars/msrbuilds/elementor-mcp?style=social)](https://github.com/msrbuilds/elementor-mcp)
@@ -17,7 +17,7 @@ A WordPress plugin that extends the [WordPress MCP Adapter](https://github.com/W
 
 ## Features
 
-- **~68 MCP Tools** covering the full Elementor page-building workflow
+- **70 MCP Tools** covering the full Elementor page-building workflow
 - **Query & Discovery** — List widgets, inspect page structures, read element settings, browse templates, view global design tokens
 - **Page Management** — Create pages, update settings, clear content, import/export templates
 - **Layout Tools** — Add flexbox containers, move/remove/duplicate elements
@@ -48,7 +48,7 @@ A WordPress plugin that extends the [WordPress MCP Adapter](https://github.com/W
 3. Download the latest release zip from the [Releases page](https://github.com/msrbuilds/elementor-mcp/releases/).
 4. In WordPress, go to **Plugins > Add New > Upload Plugin** and upload the downloaded zip file.
 5. Activate the plugin through the **Plugins** menu in WordPress.
-6. Go to **Settings > Elementor MCP** to configure tools and view connection info.
+6. Go to **Settings > MCP Tools for Elementor** to configure tools and view connection info.
 
 ## Connecting to the MCP Server
 
@@ -60,7 +60,7 @@ Connect to your WordPress site from any AI client using HTTP. No proxy or Node.j
 2. Base64-encode your credentials: `echo -n "username:app-password" | base64`
 3. Your MCP endpoint is: `https://your-site.com/wp-json/mcp/elementor-mcp-server`
 
-> **Tip:** The plugin's admin page at **Settings > Elementor MCP > Connection** can generate all configs automatically — just enter your username and Application Password.
+> **Tip:** The plugin's admin page at **Settings > MCP Tools for Elementor > Connection** can generate all configs automatically — just enter your username and Application Password.
 
 ### Claude Code
 
@@ -318,14 +318,14 @@ npx @modelcontextprotocol/inspector wp mcp-adapter serve \
 
 ## Troubleshooting
 
-- **"No MCP servers registered"** — Ensure the Elementor MCP plugin is active and all dependencies are met.
+- **"No MCP servers registered"** — Ensure the MCP Tools for Elementor plugin is active and all dependencies are met.
 - **HTTP 401** — Check your Application Password is correct and the user has `edit_posts` capability.
 - **Session errors** — The HTTP endpoint requires `Mcp-Session-Id` header after `initialize`; the proxy handles this automatically.
 - **WP-CLI not found on Windows** — Use the full path to `php.exe` and `wp-cli.phar`.
 
 ## Sample Prompts
 
-The [`prompts/`](prompts/) directory includes ready-to-use landing page prompts that demonstrate the full power of Elementor MCP tools. Each prompt is a complete blueprint — paste it into your AI client and watch an entire page get built automatically.
+The [`prompts/`](prompts/) directory includes ready-to-use landing page prompts that demonstrate the full power of MCP Tools for Elementor tools. Each prompt is a complete blueprint — paste it into your AI client and watch an entire page get built automatically.
 
 | Prompt | Industry | Description |
 |---|---|---|

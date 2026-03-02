@@ -244,6 +244,7 @@ class Elementor_MCP_Widget_Abilities {
 		if ( ! $widget_instance ) {
 			return new \WP_Error(
 				'invalid_widget_type',
+				/* translators: %s: widget type name */
 				sprintf( __( 'Widget type "%s" not found.', 'elementor-mcp' ), $widget_type )
 			);
 		}

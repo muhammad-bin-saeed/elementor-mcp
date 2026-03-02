@@ -1,6 +1,6 @@
-# Contributing to Elementor MCP
+# Contributing to MCP Tools for Elementor
 
-Thank you for your interest in contributing to Elementor MCP! This project bridges AI agents and Elementor page design through the Model Context Protocol, and community contributions are essential to making it better.
+Thank you for your interest in contributing to MCP Tools for Elementor! This project bridges AI agents and Elementor page design through the Model Context Protocol, and community contributions are essential to making it better.
 
 ## Table of Contents
 
@@ -13,6 +13,7 @@ Thank you for your interest in contributing to Elementor MCP! This project bridg
 - [Coding Standards](#coding-standards)
 - [Testing](#testing)
 - [Submitting Changes](#submitting-changes)
+- [Release Checklist](#release-checklist)
 - [Reporting Bugs](#reporting-bugs)
 - [Suggesting Features](#suggesting-features)
 
@@ -297,9 +298,53 @@ vendor/bin/phpunit --configuration phpunit.xml.dist
 
 - Keep PRs focused — one feature or fix per PR.
 - Include a clear description of what the tool does and why it's useful.
-- Update the tool count in `README.md` and `CLAUDE.md` if adding new tools.
+- Update the tool count in `README.md`, `readme.txt`, and `CLAUDE.md` if adding new tools (see [Release Checklist](#release-checklist)).
 - Add a changelog entry in `readme.txt`.
 - If adding Pro-only tools, make sure they conditionally register when Elementor Pro is active.
+
+## Release Checklist
+
+Before tagging a new release, verify these items are consistent across all files:
+
+### Version Number
+
+Update the version string in **all** of these locations:
+
+| File | Location |
+|---|---|
+| `elementor-mcp.php` | Plugin header `Version:` field |
+| `elementor-mcp.php` | `ELEMENTOR_MCP_VERSION` constant |
+| `readme.txt` | `Stable tag:` header |
+| `readme.txt` | New `= x.y.z =` changelog entry |
+| `readme.txt` | New `= x.y.z =` upgrade notice entry |
+| `README.md` | Version badge in shields.io URL |
+
+> `@since` tags in PHP docblocks should reflect the version a feature was **introduced**, not the current release — don't bump these on patch releases.
+
+### Tool Count
+
+When tools are added or removed, update the count in **all** of these locations:
+
+| File | What to update |
+|---|---|
+| `README.md` | Features section (`~NN MCP Tools`) |
+| `README.md` | MCP Tools badge (`MCP_Tools-~NN-orange`) |
+| `readme.txt` | Description paragraph (`~NN MCP`) |
+| `CLAUDE.md` | Project Overview paragraph (`~NN MCP tools`) and status line |
+
+### Feature Parity
+
+The feature bullet lists in `README.md` (Features section) and `readme.txt` (Description > Key Features) must cover the same capabilities. When adding a new feature category (e.g., Stock Images, Custom Code), add it to **both** files.
+
+### Quick Verification
+
+```bash
+# Check version consistency
+grep -n "1\\.x\\.y" elementor-mcp.php readme.txt README.md
+
+# Check tool count consistency
+grep -n "~[0-9]* MCP" README.md readme.txt CLAUDE.md
+```
 
 ## Reporting Bugs
 
@@ -323,4 +368,4 @@ Feature requests are welcome! When suggesting a new MCP tool:
 
 ---
 
-Thank you for contributing to Elementor MCP! Every contribution, no matter how small, helps make AI-powered Elementor design better for everyone.
+Thank you for contributing to MCP Tools for Elementor! Every contribution, no matter how small, helps make AI-powered Elementor design better for everyone.

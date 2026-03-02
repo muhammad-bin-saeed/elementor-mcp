@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Elementor MCP — stdio-to-HTTP proxy
+ * MCP Tools for Elementor — stdio-to-HTTP proxy
  *
  * Bridges the MCP stdio transport (used by Claude Desktop, Claude Code, etc.)
  * to the WordPress MCP Adapter HTTP endpoint.
@@ -297,7 +297,7 @@ async function handleMessage(line) {
 // Main loop
 // ---------------------------------------------------------------------------
 
-logStderr(`Elementor MCP proxy starting`);
+logStderr(`MCP Tools for Elementor proxy starting`);
 logStderr(`WordPress URL: ${WP_URL}`);
 logStderr(`REST path: ${MCP_REST_PATH}`);
 logStderr(`User: ${WP_USERNAME}`);
