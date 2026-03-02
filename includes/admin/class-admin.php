@@ -609,6 +609,31 @@ class Elementor_MCP_Admin {
 					),
 				),
 			),
+			'custom_code'      => array(
+				'label' => __( 'Custom Code', 'elementor-mcp' ),
+				'tools' => array(
+					'elementor-mcp/add-custom-css'     => array(
+						'label'       => __( 'Add Custom CSS', 'elementor-mcp' ),
+						'description' => __( 'Adds custom CSS to a specific element or the entire page.', 'elementor-mcp' ),
+						'badges'      => array( 'pro' ),
+					),
+					'elementor-mcp/add-custom-js'      => array(
+						'label'       => __( 'Add Custom JavaScript', 'elementor-mcp' ),
+						'description' => __( 'Adds a JavaScript snippet to a page via an HTML widget.', 'elementor-mcp' ),
+						'badges'      => array(),
+					),
+					'elementor-mcp/add-code-snippet'   => array(
+						'label'       => __( 'Add Code Snippet', 'elementor-mcp' ),
+						'description' => __( 'Creates a site-wide Custom Code snippet for head/body injection.', 'elementor-mcp' ),
+						'badges'      => array( 'pro' ),
+					),
+					'elementor-mcp/list-code-snippets' => array(
+						'label'       => __( 'List Code Snippets', 'elementor-mcp' ),
+						'description' => __( 'Lists all existing Custom Code snippets.', 'elementor-mcp' ),
+						'badges'      => array( 'pro', 'read-only' ),
+					),
+				),
+			),
 		);
 	}
 

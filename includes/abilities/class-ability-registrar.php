@@ -129,6 +129,11 @@ class Elementor_MCP_Ability_Registrar {
 		$svg_icons->register();
 		$this->ability_names = array_merge( $this->ability_names, $svg_icons->get_ability_names() );
 
+		// Custom code abilities (CSS, JS, code snippets).
+		$custom_code = new Elementor_MCP_Custom_Code_Abilities( $this->data, $this->factory );
+		$custom_code->register();
+		$this->ability_names = array_merge( $this->ability_names, $custom_code->get_ability_names() );
+
 		/**
 		 * Filters the registered ability names.
 		 *

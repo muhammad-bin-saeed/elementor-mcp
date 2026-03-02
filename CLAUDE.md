@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Elementor MCP Plugin — a WordPress plugin that extends the official WordPress MCP Adapter to expose Elementor data, widgets, structures, and methods as MCP (Model Context Protocol) tools. This enables AI tools (Claude, Cursor, etc.) to create and manipulate Elementor page designs programmatically via ~64 MCP tools.
+Elementor MCP Plugin — a WordPress plugin that extends the official WordPress MCP Adapter to expose Elementor data, widgets, structures, and methods as MCP (Model Context Protocol) tools. This enables AI tools (Claude, Cursor, etc.) to create and manipulate Elementor page designs programmatically via ~68 MCP tools.
 
-**Current status: All phases implemented (P0/P1/P2).** Foundation layer, 7 read-only query tools, page CRUD, layout, widget, template, global, composite tools, stock images, SVG icons, and full widget coverage are all complete (~64 MCP tools total). See `PLAN.md` for the full architectural specification.
+**Current status: All phases implemented (P0/P1/P2).** Foundation layer, 7 read-only query tools, page CRUD, layout, widget, template, global, composite tools, stock images, SVG icons, custom code tools, and full widget coverage are all complete (~68 MCP tools total). See `PLAN.md` for the full architectural specification.
 
 ## Dependencies & Requirements
 
@@ -48,7 +48,8 @@ elementor-mcp/
 │   │   ├── class-template-abilities.php       # P2: 2 template tools (save-as-template, apply-template)
 │   │   ├── class-global-abilities.php         # P2: 2 global tools (update-global-colors, update-global-typography)
 │   │   ├── class-composite-abilities.php      # P2: 1 composite tool (build-page)
-│   │   └── class-stock-image-abilities.php    # 3 stock image tools (search-images, sideload-image, add-stock-image)
+│   │   ├── class-stock-image-abilities.php    # 3 stock image tools (search-images, sideload-image, add-stock-image)
+│   │   └── class-custom-code-abilities.php   # 4 custom code tools (add-custom-css, add-custom-js, add-code-snippet, list-code-snippets)
 │   ├── schemas/
 │   │   ├── class-schema-generator.php         # Generates JSON Schema from Elementor widget controls
 │   │   └── class-control-mapper.php           # Maps individual Elementor control types → JSON Schema fragments
@@ -105,8 +106,12 @@ The MCP Adapter converts ability names like `elementor-mcp/list-widgets` to tool
 | Stock image search | `edit_posts` |
 | Stock image sideload | `upload_files` |
 | Stock image add | `edit_posts` + `upload_files` + ownership check |
+| Custom CSS (element/page) | `edit_posts` + ownership check |
+| Custom JS via HTML widget | `edit_posts` + ownership check |
+| Code snippets (create) | `manage_options` + `unfiltered_html` |
+| Code snippets (list) | `manage_options` |
 
-## All Implemented Tools (~64 total)
+## All Implemented Tools (~68 total)
 
 ### P0 — Query/Discovery (7 read-only)
 
@@ -212,6 +217,15 @@ The MCP Adapter converts ability names like `elementor-mcp/list-widgets` to tool
 | `elementor-mcp/search-images` | Search Openverse (WordPress.org) for Creative Commons images by keyword |
 | `elementor-mcp/sideload-image` | Download an external image URL into the WordPress Media Library |
 | `elementor-mcp/add-stock-image` | Search + sideload + add image widget to page in one call |
+
+### Custom Code (4 tools)
+
+| Ability Name | Purpose |
+|---|---|
+| `elementor-mcp/add-custom-css` | Add custom CSS to a specific element or page-level (Pro only, uses `selector` keyword) |
+| `elementor-mcp/add-custom-js` | Add JavaScript to a page via HTML widget with auto `<script>` wrapping |
+| `elementor-mcp/add-code-snippet` | Create a site-wide Custom Code snippet for head/body injection (Pro only) |
+| `elementor-mcp/list-code-snippets` | List existing Custom Code snippets with locations and statuses (Pro only) |
 
 ## Connecting to the MCP Server
 

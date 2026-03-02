@@ -1,10 +1,20 @@
 # Elementor MCP
 
-A WordPress plugin that extends the [WordPress MCP Adapter](https://github.com/developer/wordpress-mcp-adapter) to expose Elementor data, widgets, and page design tools as [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) tools. This enables AI agents like Claude, Cursor, and other MCP-compatible clients to create and manipulate Elementor page designs programmatically.
+[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](https://github.com/msrbuilds/elementor-mcp/releases)
+[![License](https://img.shields.io/badge/license-GPL--3.0-green.svg)](LICENSE)
+[![PHP](https://img.shields.io/badge/PHP-%3E%3D7.4-8892BF.svg)](https://php.net)
+[![WordPress](https://img.shields.io/badge/WordPress-%3E%3D6.8-21759B.svg)](https://wordpress.org)
+[![Elementor](https://img.shields.io/badge/Elementor-%3E%3D3.20-92003B.svg)](https://elementor.com)
+[![MCP Tools](https://img.shields.io/badge/MCP_Tools-~68-orange.svg)](#available-tools)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![GitHub Issues](https://img.shields.io/github/issues/msrbuilds/elementor-mcp)](https://github.com/msrbuilds/elementor-mcp/issues)
+[![GitHub Stars](https://img.shields.io/github/stars/msrbuilds/elementor-mcp?style=social)](https://github.com/msrbuilds/elementor-mcp)
+
+A WordPress plugin that extends the [WordPress MCP Adapter](https://github.com/WordPress/mcp-adapter) to expose Elementor data, widgets, and page design tools as [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) tools. This enables AI agents like Claude, Cursor, and other MCP-compatible clients to create and manipulate Elementor page designs programmatically.
 
 ## Features
 
-- **~64 MCP Tools** covering the full Elementor page-building workflow
+- **~68 MCP Tools** covering the full Elementor page-building workflow
 - **Query & Discovery** — List widgets, inspect page structures, read element settings, browse templates, view global design tokens
 - **Page Management** — Create pages, update settings, clear content, import/export templates
 - **Layout Tools** — Add flexbox containers, move/remove/duplicate elements
@@ -14,6 +24,8 @@ A WordPress plugin that extends the [WordPress MCP Adapter](https://github.com/d
 - **Global Settings** — Update site-wide color palettes and typography presets
 - **Composite Tools** — Build a complete page from a declarative JSON structure in a single call
 - **Stock Images** — Search Openverse for Creative Commons images, sideload into Media Library, add to pages
+- **SVG Icons** — Upload SVG icons from URL or raw markup for use with Elementor icon widgets
+- **Custom Code** — Add custom CSS (element/page level), inject JavaScript, create site-wide code snippets for head/body injection
 - **Admin Dashboard** — Toggle individual tools on/off and view connection configs for all supported MCP clients
 
 ## Requirements
@@ -275,6 +287,15 @@ npx @modelcontextprotocol/inspector wp mcp-adapter serve \
 |---|---|
 | `upload-svg-icon` | Upload an SVG icon (from URL or raw markup) for use with icon/icon-box widgets |
 
+### Custom Code (4 tools)
+
+| Tool | Description |
+|---|---|
+| `add-custom-css` | Add custom CSS to an element or page-level with `selector` keyword support (Pro) |
+| `add-custom-js` | Inject JavaScript via HTML widget with automatic `<script>` wrapping |
+| `add-code-snippet` | Create site-wide Custom Code snippets for head/body injection (Pro) |
+| `list-code-snippets` | List all Custom Code snippets with location and status filters (Pro) |
+
 > All tool names are prefixed with `elementor-mcp/` in the MCP namespace (e.g., `elementor-mcp/list-widgets`). The MCP Adapter converts these to `elementor-mcp-list-widgets` for transport.
 
 ## Permission Model
@@ -289,6 +310,8 @@ npx @modelcontextprotocol/inspector wp mcp-adapter serve \
 | Delete operations | `delete_posts` + ownership check |
 | Stock image search | `edit_posts` |
 | Stock image sideload | `upload_files` |
+| Custom CSS/JS | `edit_posts` + ownership check |
+| Code snippets | `manage_options` + `unfiltered_html` |
 
 ## Troubleshooting
 
@@ -296,6 +319,19 @@ npx @modelcontextprotocol/inspector wp mcp-adapter serve \
 - **HTTP 401** — Check your Application Password is correct and the user has `edit_posts` capability.
 - **Session errors** — The HTTP endpoint requires `Mcp-Session-Id` header after `initialize`; the proxy handles this automatically.
 - **WP-CLI not found on Windows** — Use the full path to `php.exe` and `wp-cli.phar`.
+
+## Contributing
+
+We welcome contributions from the community! Whether it's bug reports, feature requests, documentation improvements, or code contributions — every bit helps.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on how to get started.
+
+**Quick start:**
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-tool`)
+3. Make your changes and test locally
+4. Submit a Pull Request
 
 ## License
 
