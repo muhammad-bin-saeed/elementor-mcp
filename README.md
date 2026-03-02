@@ -31,6 +31,8 @@ A WordPress plugin that extends the [WordPress MCP Adapter](https://github.com/W
 - **Custom Code** — Add custom CSS (element/page level), inject JavaScript, create site-wide code snippets for head/body injection
 - **Admin Dashboard** — Toggle individual tools on/off and view connection configs for all supported MCP clients
 
+[<img width="1280" height="720" alt="banner" src="https://github.com/user-attachments/assets/03e02c73-9fa8-40af-997b-99515352ebbb" />]([https://wordpress.org/plugins/elementor/](https://wpacademy.gumroad.com/l/vlrihk))
+
 ## Requirements
 
 | Dependency | Version |
