@@ -12,8 +12,12 @@
 
 A WordPress plugin that extends the [WordPress MCP Adapter](https://github.com/WordPress/mcp-adapter) to expose Elementor data, widgets, and page design tools as [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) tools. This enables AI agents like Claude, Cursor, and other MCP-compatible clients to create and manipulate Elementor page designs programmatically.
 
-<img width="1953" height="1102" alt="image" src="https://github.com/user-attachments/assets/b6fbf504-5306-41ef-a584-eaabf63b2c93" />
+<img width="1995" height="1141" alt="image" src="https://github.com/user-attachments/assets/06ab916a-0146-4a5f-828c-d5aa409cb072" />
 
+
+# 50+ Premium Prompts Pack - Generate Superior Landing Pages
+## [Grab the Deal](https://wpacademy.gumroad.com/l/vlrihk)
+<img width="1280" height="720" alt="banner" src="https://github.com/user-attachments/assets/d862b866-ca2e-4283-af22-c9464b52d746" />
 
 ## Features
 
@@ -456,3 +460,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on how to get sta
 ## License
 
 This project is licensed under the [GNU General Public License v3.0](LICENSE).
+
