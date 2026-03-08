@@ -24,3 +24,7 @@ Thumbs.db
 #Tests
 tests/*
 releases/*
+
+#Meta
+docs/*
+.security/*
