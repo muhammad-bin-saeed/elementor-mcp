@@ -26,4 +26,5 @@ tests/*
 releases/*
 
 #Meta
-#docs/*
+docs/*
+.security/*
